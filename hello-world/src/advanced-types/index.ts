@@ -11,3 +11,17 @@ let employee2: Employee = {
   retire: (date: Date) => console.log(date),
 };
 
+//Union types
+//allows you to give a variable or fn parameter more than one type
+function kgToLbs(weight: number | string): number {
+    //Narrowing is used to narrow down the union type to a specific type
+    if (typeof weight === "number") {
+      return weight * 2.2;
+    } else {
+      return parseInt(weight) * 2.2;
+    }
+  }
+  
+  kgToLbs(10);
+  kgToLbs("10kg");
+  

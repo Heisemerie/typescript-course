@@ -16,4 +16,14 @@ const meduim = 2;
 const large = 3;
 let mySize = 2;
 console.log(mySize);
+function calculateTax(income, taxYear = 2022) {
+    if (taxYear < 2022)
+        return income * 1.2;
+    return income * 1.3;
+}
+let employee1 = {
+    id: 1,
+    name: "John",
+    retire: (date) => console.log(date),
+};
 //# sourceMappingURL=index.js.map
