@@ -35,3 +35,15 @@ function calculateTax(income: number, taxYear = 2022): number {
   if (taxYear < 2022) return income * 1.2;
   return income * 1.3;
 }
+
+//Objects
+let employee: {
+  readonly id: number;
+  name: string;
+  retire: (date: Date) => void;
+} = {
+  id: 1,
+  name: "John",
+  retire: (date: Date) => console.log(date),
+}; //infers the shape of the object
+//readonly prevents accidental modification of properties
