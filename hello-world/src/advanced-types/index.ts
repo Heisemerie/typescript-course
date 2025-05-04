@@ -40,3 +40,10 @@ let textBox: UIWidget = {
   drag: () => console.log("drag"),
   resize: () => console.log("resize"),
 };
+
+//Literal Types
+//allows only exact or specific values
+type Quantity = 50 | 100; //can be numbers
+let quantity: Quantity = 100;
+
+type Metric = "cm" | "inch"; //can be strings
