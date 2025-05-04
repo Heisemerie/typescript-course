@@ -54,4 +54,24 @@ function greet(name: string | null | undefined) {
     console.log(name.toUpperCase());
   } else console.log("Hola");
 }
-greet(null) //TS compiler prevents passing 'null' or 'undefined' values
+greet(null); //TS compiler prevents passing 'null' or 'undefined' values
+
+//Optional Chaining
+//when working with nullable objects, you have to do null checks
+type Customer = {
+  birthday?: Date;
+};
+
+function getCustomer(id: number): Customer | null {
+  return id === 0 ? null : { birthday: new Date() };
+}
+
+let customer = getCustomer(0);
+console.log(customer?.birthday?.getFullYear()); //optional property access operator because customer and birthday can be null or undefined
+
+let customers: Customer[] | undefined = undefined;
+console.log(customers?.[0]); //optional element access operator
+
+let log: any = null;
+log?.("a"); //optional call
+
