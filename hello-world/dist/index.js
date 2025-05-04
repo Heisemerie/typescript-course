@@ -1,2 +1,3 @@
+"use strict";
 console.log("hello-world");
-var age = 23;
+let age = 23;
