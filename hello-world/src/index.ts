@@ -1,3 +1,4 @@
-console.log("hello-world")
+console.log("hello-world");
 
-let age: number = 23
+let age: number = 23;
+if (age < 50) age += 10;
