@@ -11,3 +11,8 @@ function render(document: any) {
 //Arrays
 let scores: number[] = [1, 2, 3]; //infers type number[]
 scores.forEach((n) => n.toExponential(2)); //offers code completion
+
+//Tuples
+let user: [number, string] = [1, "Ejike"];
+user[1].length; //offers code completion
+user.push(1); //doesn't throw errors
