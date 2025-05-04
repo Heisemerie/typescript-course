@@ -37,7 +37,7 @@ function calculateTax(income: number, taxYear = 2022): number {
 }
 
 //Objects
-let employee: {
+let employee1: {
   readonly id: number;
   name: string;
   retire: (date: Date) => void;
