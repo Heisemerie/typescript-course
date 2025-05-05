@@ -81,5 +81,12 @@ let speed: number | null = 50;
 const ride = {
   //Falsy (undefined, null, '', false, 0)
   speed1: speed || 30, //but 0 could be a valid value
-  speed2: speed ?? 30,//check speifically for null with the nullish coalescing operator (same as 'speed ==! ? speed : 30')
+  speed2: speed ?? 30, //check speifically for null with the nullish coalescing operator (same as 'speed ==! ? speed : 30')
 };
+
+//Type Assertion
+//sometimes we know more about the type than typescript, we use type assertion to inform typescript about the type
+const phone = document.getElementById("phone") as HTMLInputElement; //the method returns HTMLElement or null. We tell TS that we are sure it is a HTMLElement
+//HTMLElement is a base class in JS that represents any type of HTML element
+//HTMLInputElement is a more specific type of element that has a specific property called 'value'
+phone.value; //type assertion allows for intellisense. The program will crash if the object is of the wrong type and will not throw an error
