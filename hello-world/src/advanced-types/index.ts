@@ -104,3 +104,19 @@ function render3(document: unknown) {
   if (document instanceof HTMLInputElement) document.value; //'instanceof' operator is used for custom types
 }
 //using 'unknown' is preferred to 'any' because the compiler forces us to perform type checking to make sure the methods we're calling exist on the target object
+
+//The Never Type
+//it represents a value that will never occur
+function processEvents(): never {
+  //a function that runs continously (polling). Anotate with 'never' to tell TS that it never returns else it infers 'void' return type and the next line after the function call appears reachable
+  while (true) {
+    //Read a message from a queue
+  }
+}
+function reject(message: string): never {
+  throw new Error(message);
+}
+
+// reject("..."); // prevents processEvents() and console.log() from running
+processEvents();
+console.log("hello world"); //this line will never run because 'processEvents' never returns (it has an infinite loop)
