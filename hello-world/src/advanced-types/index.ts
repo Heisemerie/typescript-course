@@ -90,3 +90,17 @@ const phone = document.getElementById("phone") as HTMLInputElement; //the method
 //HTMLElement is a base class in JS that represents any type of HTML element
 //HTMLInputElement is a more specific type of element that has a specific property called 'value'
 phone.value; //type assertion allows for intellisense. The program will crash if the object is of the wrong type and will not throw an error
+
+// The Unkown Type
+//let's assume we're converting JS code to TS and have a situation where we need to use the 'any' type. For example;
+function render2(document: any) {
+  document.move(); //the any type prevents the compiler from type checking
+  document.fly(); //we can therefore call any method on the 'document' argument
+}
+function render3(document: unknown) {
+  //the unknown type lets the compiler tell us that it is not aware of the type and its avalaible methods
+  //We can use Narrowing to narrow down the type of the object
+  if (typeof document === "string") document.toUpperCase; //'typeof' operator only works with primitive types
+  if (document instanceof HTMLInputElement) document.value; //'instanceof' operator is used for custom types
+}
+//using 'unknown' is preferred to 'any' because the compiler forces us to perform type checking to make sure the methods we're calling exist on the target object
