@@ -1,3 +1,10 @@
+//The any type
+//Arrays
+//Tuples
+//Enums
+//Functions
+//Objects
+
 //The any Type
 let sales = 123_456_789; //infers type number
 let course = "typescript"; //infers type string
