@@ -1,3 +1,10 @@
+//Type aliases
+//Unions and Intersections
+//Type Narrowing
+//Nullable Types 
+//The unknkown type
+//The never type
+
 //Type Aliases
 type Employee = {
   readonly id: number;
