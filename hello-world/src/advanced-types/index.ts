@@ -75,3 +75,11 @@ console.log(customers?.[0]); //optional element access operator
 let log: any = null;
 log?.("a"); //optional call
 
+//Nullish Coalescing Operator
+//when working with null or undefined values, sometimes you need to fall back to a default value
+let speed: number | null = 50;
+const ride = {
+  //Falsy (undefined, null, '', false, 0)
+  speed1: speed || 30, //but 0 could be a valid value
+  speed2: speed ?? 30,//check speifically for null with the nullish coalescing operator (same as 'speed ==! ? speed : 30')
+};
