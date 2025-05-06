@@ -40,3 +40,15 @@ class Account {
     this.balance += amount;
   }
 }
+
+//Creating Objects
+let ejikeAccount = new Account(1, "Ejike", 0); //using the 'new' operator you can create an instance of a class
+ejikeAccount.deposit(100); //call the method
+console.log(ejikeAccount);
+
+//remember 'typeof' operator used for narrowing in Union and Unknown types...
+console.log(typeof ejikeAccount); //the 'typeof' always returns object no matter what the underlying class is
+
+//whatif you want to check the type of an object and see whether it is an instance of a given class, we use the 'instanceof' operator
+console.log(ejikeAccount instanceof Account) //returns a boolean (true)
+//therefore if you're using a type guard to narrow down a type and you're dealing with a custom object, always use the 'instanceof' operator

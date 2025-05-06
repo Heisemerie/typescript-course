@@ -11,4 +11,9 @@ class Account {
         this.balance += amount;
     }
 }
+let ejikeAccount = new Account(1, "Ejike", 0);
+ejikeAccount.deposit(100);
+console.log(ejikeAccount);
+console.log(typeof ejikeAccount);
+console.log(ejikeAccount instanceof Account);
 //# sourceMappingURL=index.js.map
