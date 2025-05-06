@@ -42,16 +42,49 @@ seats.A2 = "Ejike Mbah";
 seats["A3"] = "James Dick";
 class Ride {
     start() {
-        Ride.activeRides++;
+        Ride._activeRides++;
     }
     stop() {
-        Ride.activeRides--;
+        Ride._activeRides--;
+    }
+    static get activeRides() {
+        return Ride._activeRides;
     }
 }
-Ride.activeRides = 0;
+Ride._activeRides = 0;
 let ride1 = new Ride();
 ride1.start();
 let ride2 = new Ride();
 ride2.start();
 console.log(Ride.activeRides);
+class Person {
+    constructor(firstName, lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+    get fullName() {
+        return `${this.firstName} ${this.lastName}`;
+    }
+    walk() {
+        console.log("Walking...");
+    }
+}
+class Student extends Person {
+    constructor(studentId, firstName, lastName) {
+        super(firstName, lastName);
+        this.studentId = studentId;
+    }
+    takeTest() {
+        console.log("Taking a test...");
+    }
+}
+let student1 = new Student(1, "James", "Bower");
+student1.walk();
+class Teacher extends Person {
+    get fullName() {
+        return `Professor ${super.fullName}`;
+    }
+}
+let teacher1 = new Teacher("John", "Smith");
+console.log(teacher1.fullName);
 //# sourceMappingURL=index.js.map

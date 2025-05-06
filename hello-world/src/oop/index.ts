@@ -211,3 +211,18 @@ class Student extends Person {
 let student1 = new Student(1, "James", "Bower");
 student1.walk(); //student inherits members of the parent class
 //as a best practice, you should implement each class in a separate file
+
+//Method Overriding
+//sometimes you want to change something in the inherited code
+//for example take the fullName getter in the Person class
+//Let's say we want to implement the teacher class and when getting the fullname of a teacher, we want to prefix their fullname with 'Professor'
+//So in the Teacher class we want to change the implementation of the fullName getter (ie method overriding)
+class Teacher extends Person {
+  //the override keyword tells the TSC that we are overriding/changing the implementation of the method
+  override get fullName() {
+    return `Professor ${super.fullName}`; //call the method usng the super keyword to avoid rewriting the method's logic
+  }
+}
+let teacher1 = new Teacher("John", "Smith");
+console.log(teacher1.fullName);
+//always use the override keyword. enable the compiler option to remind you to use it 'noImplicitOverride: true'
