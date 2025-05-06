@@ -226,3 +226,29 @@ class Teacher extends Person {
 let teacher1 = new Teacher("John", "Smith");
 console.log(teacher1.fullName);
 //always use the override keyword. enable the compiler option to remind you to use it 'noImplicitOverride: true'
+
+//Polynorphism
+//it refers to the situation where an object takes many different forms
+//for example, let's say we want to write a function that prints the name of some people
+function printNames(people: Person[]) {
+  for (const person of people) {
+    console.log(person.fullName);
+  }
+}
+printNames([new Student(1, "James", "Brown"), new Teacher("John", "Smith")]); //every Student and Teacher is a person. Therefore the function can take a Teacher or Student
+//this is polymorphism as the 'person' object in the for loop takes different forms in each iteration
+//that is why the fullName getter gives diffeent outputs
+//This is powerful as it allows to create a new class (eg Principal) and print its name without making a change to the function
+class Principal extends Person {
+  override get fullName() {
+    return `Principal ${super.fullName}`;
+  }
+}
+
+printNames([
+  new Student(1, "James", "White"),
+  new Teacher("John", "Doe"),
+  new Principal("Mary", "Love"),
+]); //enhanced our program (added Principal) without changing the function
+//this leads to another principle of OOP
+//Open Closed Principle: your classes should be open to extension and closed for modification
