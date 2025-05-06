@@ -125,5 +125,5 @@ function reject(message: string): never {
 }
 
 // reject("..."); // prevents processEvents() and console.log() from running
-processEvents();
+// processEvents();
 console.log("hello world"); //this line will never run because 'processEvents' never returns (it has an infinite loop)
