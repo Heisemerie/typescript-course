@@ -252,3 +252,7 @@ printNames([
 ]); //enhanced our program (added Principal) without changing the function
 //this leads to another principle of OOP
 //Open Closed Principle: your classes should be open to extension and closed for modification
+
+//Private vs Protected Memebers
+//Protected members can be accessed anywhere within the class and they are also inherited but private members are not
+//they are not used often
