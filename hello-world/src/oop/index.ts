@@ -24,23 +24,28 @@
 //Let's say we want to represent the concept of a bank account with properties; id, owner, balance & methods deposit(), withdraw()
 class Account {
   //define properties (they are only for TS and don't exist in JS)
-  readonly id: number;
-  owner: string;
-  private _balance: number;
-  nickname?: string;
+  //   readonly id: number;
+  //   owner: string;
+  //   private _balance: number;
+  //   nickname?: string;
 
-  constructor(id: number, owner: string, balance: number, nickname = "") {
+  constructor(
+    public readonly id: number,
+    public owner: string,
+    private _balance: number,
+    public nickname = ""
+  ) {
     //method does not have a return type annotation because it always returns an instance of its constructor
-    this.id = id;
-    this.owner = owner;
-    this._balance = balance;
-    this.nickname = nickname;
+    // this.id = id;
+    // this.owner = owner;
+    // this._balance = balance;
+    // this.nickname = nickname;
   }
 
   deposit(amount: number): void {
     if (amount <= 0) throw new Error("Invalid amount");
     this._balance += amount;
-    this.calculateTax()
+    this.calculateTax();
   }
 
   private calculateTax() {
@@ -89,4 +94,7 @@ console.log(ejikeAccount.getBalance());
 //access modifiers can also be applied to methods
 //let's say we want a 'calculateTax' method that is only called in the deposit method we can use the private keyword
 
-//Parameter Properties
+//Parameter Properties 
+//To write more concise code, you can add the modifiers in the constructor parameter declaration, this tells the compiler to create the parameter and initalize it in one go
+//this prevents separate declaration and initialization in the constructor and type declaration in the class (I commented them out)
+//these are called parameter properties
