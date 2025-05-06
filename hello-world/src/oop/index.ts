@@ -168,9 +168,46 @@ ride2.start();
 //they both log 1 because they are independent objects in memory tracking their individual 'activeRides' rather than the total active rides
 //the solution is a single global place to store the 'activeRides' this is where we use static members
 
-//A static member (property or method) is a member that belongs to a class and not an object, so we only have one instance of that member in memory 
+//A static member (property or method) is a member that belongs to a class and not an object, so we only have one instance of that member in memory
 //we add the static keyword in front of the member
 //replace 'this' with the classname (ie 'Ride') in the method definition in the class
 console.log(Ride.activeRides); //the property belongs to the 'Ride' class
 //use access modifiers to make 'activeRides' private and define a public getter to read its value to prevent external modification
 //set the getter to static to add it to the class and not the object instance
+
+//Inheritance
+//Sometimes we deal with classes that have some commnality
+//Student and Teacher class can have common properties like firstName, lastName and fullName then walk() and talk() methods
+//Rather than write the code (properties) twice in the Student and Teacher class respectively, we write it once and reuse in different places
+//We extract these common properties and methods and put them in a separate class like Person and have Student and Teacher inherit these common properties
+//Inheritance is a mechanism that allows us to reuse code
+//The Person class is the Parent/Base/Super class
+//The Teacher and Student class are Child/Derived/Sub class
+class Person {
+  constructor(public firstName: string, public lastName: string) {}
+
+  get fullName() {
+    return `${this.firstName} ${this.lastName}`;
+  }
+
+  walk() {
+    console.log("Walking...");
+  }
+}
+
+//use the extends keyword to create the inheritance
+class Student extends Person {
+  //avoid using Parameter Properties for inherited members as they will be initialized in the super() constructor
+  constructor(public studentId: number, firstName: string, lastName: string) {
+    //use 'super()' to call the constructor of the parent class and pass the required parameters to initalize the inherited properties
+    super(firstName, lastName);
+  }
+
+  takeTest() {
+    console.log("Taking a test...");
+  }
+}
+
+let student1 = new Student(1, "James", "Bower");
+student1.walk(); //student inherits members of the parent class
+//as a best practice, you should implement each class in a separate file
