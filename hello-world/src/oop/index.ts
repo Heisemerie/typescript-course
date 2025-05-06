@@ -116,3 +116,20 @@ console.log(ejikeAccount.balance);
 //let's assume we want to update the balance outside depositing or withdrawing money, we can implement a setter where we get a value and validate it
 //setters help enforce validation with the uniform syntax which prevents bypass unlike normal methods
 ejikeAccount.balance = 50;
+
+//Index Signatures
+//In JS you can create an object and add properties to it dynamically, this is not possible in TS as it is strict about the shape of objects
+//In situations where we need to add properties dynamically, we use index signatures
+//Let's say we're building a ticketing application for concerts and for each concert we want to know who is sitting where, we create a class called 'SeatAssignment'
+//In a venue you can have seats like A1, A2, ... and we want to know who is sitting on each seat, rather than creating individual seat properties or what if the seats are numbered differently with a different numbering system
+class SeatAssignment {
+  //   A1: string; //'John Smith'
+  //   A2: string; //'Ejike Mbah'
+  [seatNumber: string]: string;
+}
+let seats = new SeatAssignment();
+seats.A1 = "John Smith";
+seats.A2 = "Ejike Mbah";
+seats["A3"] = "James Dick"; //access with square bracket notation
+//so using index signatures we can create properties dynamically and still have type safety
+
