@@ -103,4 +103,23 @@ printNames([
     new Teacher("John", "Doe"),
     new Principal("Mary", "Love"),
 ]);
+class Shape {
+    constructor(color) {
+        this.color = color;
+    }
+}
+class Circle extends Shape {
+    constructor(radius, color) {
+        super(color);
+        this.radius = radius;
+    }
+    render() {
+        console.log("rendering a cirlce");
+    }
+}
+class Calendar {
+    constructor(name) {
+        this.name = name;
+    }
+}
 //# sourceMappingURL=index.js.map

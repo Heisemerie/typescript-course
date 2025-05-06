@@ -280,3 +280,40 @@ class Circle extends Shape {
 // let shape1 = new Shape() //TSC shows error
 //an abstract class is a class that is not ready and must be extended before it can be used
 //you can also have abstract methods. they can only exist inside abstract classes
+
+//Interfaces
+//they are used to define the interface (or shape) of an object
+//let's say we want to represent a calendar concept. There are different calendar implementations (Google calendar, iCal, Outlook), but they have some common properties and methods
+//we can define all these commonalities in a base class called calendar
+abstract class Calendar {
+  constructor(public name: string) {}
+
+  abstract addEvent(): void; //each method depends on which calendar implementation we're using
+  abstract removeEvent(): void; //therefore they should be abstract
+}
+//with an absract class we can create concrete implementations of the calendar
+
+//Using an interface
+interface CalenDar {
+  name: string;
+  addEvent(): void;
+  removeEvent(): void;
+}
+//it is more concise and shorter
+//use classes when you have an algorithm/logic (method) to be shared among subclasses then use an abstract class
+
+//you can use inheritance with interfaces
+interface CloudCalendar extends CalenDar {
+  sync(): void; //syncing to the cloud
+}
+
+//we can implemenent the interface with a class using the implements keyword
+class GoogleCalendar implements CalenDar {
+  constructor(public name: string) {}
+    addEvent(): void {
+        throw new Error("Method not implemented.");
+    }
+    removeEvent(): void {
+        throw new Error("Method not implemented.");
+    }
+}
