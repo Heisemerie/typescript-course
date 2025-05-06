@@ -256,3 +256,27 @@ printNames([
 //Private vs Protected Memebers
 //Protected members can be accessed anywhere within the class and they are also inherited but private members are not
 //they are not used often
+
+//Abstract Classes and Methods
+//let's say we're building an application and we want to allow the user to draw something on a canvas
+//so we have classes like Circle, Rectangle and Triangle
+//these classes should have some common properties like color, size and position
+abstract class Shape {
+  constructor(public color: string) {}
+  abstract render(): void; //at this point we don't know how to render the shape because the rendering algorithm depends on the shape
+}
+
+class Circle extends Shape {
+  constructor(public radius: number, color: string) {
+    super(color);
+  }
+
+  override render(): void {
+    console.log("rendering a cirlce");
+  }
+}
+//the problem is that you can call the render() method on an instance of the Shape class but this makes no meaning
+//Abstract classes stop you from being able to create an instance of a class
+// let shape1 = new Shape() //TSC shows error
+//an abstract class is a class that is not ready and must be extended before it can be used
+//you can also have abstract methods. they can only exist inside abstract classes
