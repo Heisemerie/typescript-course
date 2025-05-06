@@ -55,6 +55,15 @@ class Account {
   getBalance(): number {
     return this._balance;
   }
+
+  get balance(): number {
+    return this._balance;
+  }
+
+  set balance(amount: number) {
+    if (amount < 0) throw new Error("Invalid Amount");
+    this._balance = amount;
+  }
 }
 
 //Creating Objects
@@ -94,7 +103,16 @@ console.log(ejikeAccount.getBalance());
 //access modifiers can also be applied to methods
 //let's say we want a 'calculateTax' method that is only called in the deposit method we can use the private keyword
 
-//Parameter Properties 
+//Parameter Properties
 //To write more concise code, you can add the modifiers in the constructor parameter declaration, this tells the compiler to create the parameter and initalize it in one go
 //this prevents separate declaration and initialization in the constructor and type declaration in the class (I commented them out)
 //these are called parameter properties
+
+//Getters and Setters
+//the 'getBalance' method is perfectly fine but there is a better way using getters and setters
+//getters and setters enforce uniform syntax for properties and methods
+console.log(ejikeAccount.balance);
+//getters also prevent you from assigning (setting) a new value
+//let's assume we want to update the balance outside depositing or withdrawing money, we can implement a setter where we get a value and validate it
+//setters help enforce validation with the uniform syntax which prevents bypass unlike normal methods
+ejikeAccount.balance = 50;
