@@ -133,3 +133,44 @@ seats.A2 = "Ejike Mbah";
 seats["A3"] = "James Dick"; //access with square bracket notation
 //so using index signatures we can create properties dynamically and still have type safety
 
+//Static Members
+//let's imagine we're building a ride sharing application like uber so people can use their phones and request a ride
+//let's say we ignore other listed properties and want to keep track of the active rides
+class Ride {
+  // passenger
+  // pickupLocation
+  // dropOffLocation
+  private static _activeRides: number = 0;
+
+  start() {
+    // this.activeRides++;
+    Ride._activeRides++;
+  }
+  stop() {
+    // this.activeRides--;
+    Ride._activeRides--;
+  }
+
+  static get activeRides() {
+    return Ride._activeRides;
+  }
+}
+
+let ride1 = new Ride();
+ride1.start();
+
+let ride2 = new Ride();
+ride2.start();
+
+// console.log(ride1.activeRides); //logs 1
+// console.log(ride2.activeRides); //logs 1
+
+//they both log 1 because they are independent objects in memory tracking their individual 'activeRides' rather than the total active rides
+//the solution is a single global place to store the 'activeRides' this is where we use static members
+
+//A static member (property or method) is a member that belongs to a class and not an object, so we only have one instance of that member in memory 
+//we add the static keyword in front of the member
+//replace 'this' with the classname (ie 'Ride') in the method definition in the class
+console.log(Ride.activeRides); //the property belongs to the 'Ride' class
+//use access modifiers to make 'activeRides' private and define a public getter to read its value to prevent external modification
+//set the getter to static to add it to the class and not the object instance
