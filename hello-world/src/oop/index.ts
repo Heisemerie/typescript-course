@@ -26,20 +26,29 @@ class Account {
   //define properties (they are only for TS and don't exist in JS)
   readonly id: number;
   owner: string;
-  balance: number;
+  private _balance: number;
   nickname?: string;
 
   constructor(id: number, owner: string, balance: number, nickname = "") {
     //method does not have a return type annotation because it always returns an instance of its constructor
     this.id = id;
     this.owner = owner;
-    this.balance = balance;
+    this._balance = balance;
     this.nickname = nickname;
   }
 
   deposit(amount: number): void {
     if (amount <= 0) throw new Error("Invalid amount");
-    this.balance += amount;
+    this._balance += amount;
+    this.calculateTax()
+  }
+
+  private calculateTax() {
+    //...
+  }
+
+  getBalance(): number {
+    return this._balance;
   }
 }
 
@@ -61,3 +70,23 @@ console.log(ejikeAccount instanceof Account); //returns a boolean (true)
 //we can solve this problem with the 'readonly' modifier
 //Now let's define a new property 'nickname' of type string, TS shows a compilation error because it hasn't been initialized
 //to make it optional by appending it with a question mark (?) and give it a default value in the constructor
+
+//Access Control Keywords
+//In TS we have other modifiers for controlling access to properties and methods and use these properties to write more robust code
+//For example, in our current implementation, we have the deposit method for updating the balance
+//Let's say in the future we also want to record transactions in this account, so everytime we deposit or withdraw money, we want to record the transaction so we know who paid, how much and when
+//so we are going to have a new property in this class called 'transactions', which is going to be an array of transaction objects
+//then everytime we want to update the balance, just before doing so, we record a transaction object
+//the problem with this implementation is that once we have an account object we can directly update its balance (inside or outside the class) because it is not readonly
+//this is a problem because it bypasses the method to update the transaction
+//this is where we can use access modifiers/control keywords to solve this problem
+//There are three access modifiers in TS; public, private and protected
+//Properties are public by default
+//Private properties cannot be accessed from outside the account class only from within the class
+//By convention we prefix private properties with an underscore (use F2 to update all instances at once)
+//If we want to show a private property (_balance) to a user use a method to return it
+console.log(ejikeAccount.getBalance());
+//access modifiers can also be applied to methods
+//let's say we want a 'calculateTax' method that is only called in the deposit method we can use the private keyword
+
+//Parameter Properties
