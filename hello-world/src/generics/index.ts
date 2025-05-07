@@ -127,6 +127,31 @@ store2.add({
   name: "a",
   price: 1,
 });
-store2.find('name', 'a')
+store2.find("name", "a");
 // store2.find('nonExistingProperty', 1) //this will crash the program because there is no property by this name in the ProDuct interface
 //the 'keyof' operator returns a union of properties of a given type
+
+//Type Mapping
+//sometimes we need to base a type on another type
+//what if somewhere in our application we need a ProDuct with readonly properties
+//One solution is to duplicate the 'ProDuct' interface with readonly properties
+interface ReadOnlyProperties {
+  readonly name: string;
+  readonly price: number;
+}
+//this is very repetitive
+//and everytime we add a new property to the first interface, we have to remember to add it to the second one
+//rather use type mapping (a new type based on an existing type)
+//we add the properties dynamically and make them readonly
+type ReadOnlyProDuct = {
+  //we use two familiar techniques;
+  //Index signature
+  //keyof
+  readonly [Property in keyof ProDuct]: ProDuct[Property];
+};
+//if we need another type of readonly property
+type ReadOnly<T> = {
+  readonly [Property in keyof T]?: T[Property]; //you can add ? to make them optional in one go 
+};
+
+//you can get more details googling TS utility types on typescriptlang.org 
