@@ -73,3 +73,42 @@ function echo<T extends number | string | { name: string }>(value: T): T {
 echo(1); //by default we can call the function with any value type
 //what if we want to constrain or limit the type of value we can pass to the function
 //we use the 'extends' keyword
+
+//Extending Generic Classes
+//let's talk about generic classes and inheritance
+//let's say we're building an ecommerce application with object like products, categories, shopping carts...
+interface Product {
+  name: string;
+  price: number;
+}
+//let's say we need a mechanism for storing these objects
+//we want to be able to store different kinds of objects; products, categories, shopping carts...
+class Store<T> {
+  protected _objects: T[] = [];
+
+  add(obj: T): void {
+    this._objects.push(obj);
+  }
+}
+//to extend this class we can; 
+
+//pass on the generic type parameter
+class CompressibleStore<T> extends Store<T> {
+  compress() {}
+}
+let store = new CompressibleStore<Product>();
+store.compress();
+
+//restrict the generic type parameter
+class SearchableStore<T extends { name: string }> extends Store<T> {
+  find(name: string): T | undefined {
+    return this._objects.find((obj) => obj.name === name);
+  }
+}
+
+//fix the generic type parameter
+class ProductStore extends Store<Product> {
+  filterByCategory(category: string): Product[] {
+    return [];
+  }
+}
