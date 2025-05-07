@@ -63,3 +63,13 @@ interface Product {
 //let's see how we can use the fetch() function along with these interfaces
 let result = fetch<User>("url"); //supply the appropriate type to the function
 result.data?.username; //intellisense is available
+
+//Generic Constraints
+//sometimes we need to constrin generic type arguments
+function echo<T extends number | string | { name: string }>(value: T): T {
+  //we can constrain by primitive values, object shapes, interfaces and classes
+  return value;
+}
+echo(1); //by default we can call the function with any value type
+//what if we want to constrain or limit the type of value we can pass to the function
+//we use the 'extends' keyword
