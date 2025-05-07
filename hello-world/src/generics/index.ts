@@ -10,7 +10,7 @@
 class KeyValuePair {
   constructor(public key: number, public value: string) {}
 }
-let pair = new KeyValuePair(1, "Apple"); 
+let pair = new KeyValuePair(1, "Apple");
 //what if somewhere else in our application, we wanted to use a different value type for our key
 //Option 1: use any and lose type checking and intellisense
 //Option 2: duplicate the class but it's redundant
@@ -24,3 +24,17 @@ class KeyValuePair2<T, U> {
 let pair2 = new KeyValuePair2<string, string>("1", "Mango");
 //there is type safety, intellisense and no redundancy or duplication
 //the compiler can still infer the types if not supplied
+
+//Generic Functions
+//we can also create generic functions or methods. for example;
+function wrapInArray<T>(value: T) {
+  return [value];
+}
+let numbers = wrapInArray("1");
+//the function could also be a function inside a class
+class ArrayUtils {
+  static wrapInArray<T>(value: T) {
+    return [value];
+  }
+}
+let numbers2 = ArrayUtils.wrapInArray(1);
