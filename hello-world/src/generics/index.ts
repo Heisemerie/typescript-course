@@ -77,7 +77,7 @@ echo(1); //by default we can call the function with any value type
 //Extending Generic Classes
 //let's talk about generic classes and inheritance
 //let's say we're building an ecommerce application with object like products, categories, shopping carts...
-interface Product {
+interface ProDuct {
   name: string;
   price: number;
 }
@@ -89,26 +89,44 @@ class Store<T> {
   add(obj: T): void {
     this._objects.push(obj);
   }
+
+  //T is ProDuct
+  //keyof T is name | price
+  find(property: keyof T, value: unknown): T | undefined {
+    return this._objects.find((obj) => obj[property] === value);
+  }
 }
-//to extend this class we can; 
+//to extend this class we can;
 
 //pass on the generic type parameter
 class CompressibleStore<T> extends Store<T> {
   compress() {}
 }
-let store = new CompressibleStore<Product>();
+let store = new CompressibleStore<ProDuct>();
 store.compress();
 
 //restrict the generic type parameter
 class SearchableStore<T extends { name: string }> extends Store<T> {
-  find(name: string): T | undefined {
+  findSearch(name: string): T | undefined {
+    //added 'Search' during 'The keyof operator' section
     return this._objects.find((obj) => obj.name === name);
   }
 }
 
 //fix the generic type parameter
-class ProductStore extends Store<Product> {
+class ProductStore extends Store<ProDuct> {
   filterByCategory(category: string): Product[] {
     return [];
   }
 }
+
+//The keyof operator
+//implementing the find method in the Store class from the previous example
+let store2 = new Store<ProDuct>();
+store2.add({
+  name: "a",
+  price: 1,
+});
+store2.find('name', 'a')
+// store2.find('nonExistingProperty', 1) //this will crash the program because there is no property by this name in the ProDuct interface
+//the 'keyof' operator returns a union of properties of a given type
