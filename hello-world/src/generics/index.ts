@@ -38,3 +38,28 @@ class ArrayUtils {
   }
 }
 let numbers2 = ArrayUtils.wrapInArray(1);
+
+//Generic Interfaces
+//we can also make our interfaces generic
+//let's say we have a website with endpoints for getting a list of users and products
+// http://mywebsite.com/users
+// http://mywebsite.com/products
+//let's define an interface for the return type of the URL
+interface Result<T> {
+  data: T | null;
+  error: string | null; //add error if request fails
+}
+//let's define a function for calling the API endpoint
+function fetch<T>(url: string): Result<T> {
+  return { data: null, error: null };
+}
+//now let's define the interfaces for the user and product
+interface User {
+  username: string;
+}
+interface Product {
+  title: string;
+}
+//let's see how we can use the fetch() function along with these interfaces
+let result = fetch<User>("url"); //supply the appropriate type to the function
+result.data?.username; //intellisense is available
