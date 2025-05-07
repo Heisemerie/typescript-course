@@ -15,3 +15,12 @@ let pair = new KeyValuePair(1, "Apple");
 //Option 1: use any and lose type checking and intellisense
 //Option 2: duplicate the class but it's redundant
 //Option 3: generic classes (common and reusable class)
+
+//Generic classes
+//T is used because the idea comes from C++ called 'template' classes
+class KeyValuePair2<T, U> {
+  constructor(public key: T, public value: U) {}
+}
+let pair2 = new KeyValuePair2<string, string>("1", "Mango");
+//there is type safety, intellisense and no redundancy or duplication
+//the compiler can still infer the types if not supplied
