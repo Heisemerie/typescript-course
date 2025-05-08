@@ -51,6 +51,7 @@ interface Result<T> {
 }
 //let's define a function for calling the API endpoint
 function fetch<T>(url: string): Result<T> {
+  url
   return { data: null, error: null };
 }
 //now let's define the interfaces for the user and product
@@ -116,6 +117,7 @@ class SearchableStore<T extends { name: string }> extends Store<T> {
 //fix the generic type parameter
 class ProductStore extends Store<ProDuct> {
   filterByCategory(category: string): Product[] {
+    category
     return [];
   }
 }
