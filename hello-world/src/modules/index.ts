@@ -20,3 +20,10 @@ console.log(circle.radius);
 //Starting with ES2015 modules have become natively supported in JS
 //let's explore other module formats for familiarity (they are not used anymore)
 //we modify the compiler option in the tsconfig modules section
+
+//Default exports
+//sometimes we just want to export a single thing from a module
+//in that case it is better to use a default export
+import Stores, { Format } from "./storage";
+let stores = new Stores();
+//default exxports can exist with named exports
