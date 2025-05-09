@@ -42,3 +42,17 @@ function Component1(options: ComponentOptions) {
 
 @Component1({ selector: "#my-profile" })
 class ProfileComponent1 {}
+
+//Decorator composition
+//we can also apply multiple decorators to a class or its members
+function Pipe(constructor: Function) {
+  console.log("Pipe decorator called");
+  constructor.prototype.pipe = true;
+}
+
+@Component
+@Pipe
+class ProfileComponent2 {}
+//the 'Pipe' decorator runs before the 'Component' decorator.
+//the idea comes from math where in the expression f(g(x)), g(x) runs before f(x)
+
