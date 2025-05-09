@@ -51,18 +51,18 @@ interface Result<T> {
 }
 //let's define a function for calling the API endpoint
 function fetch<T>(url: string): Result<T> {
-  url
+  url;
   return { data: null, error: null };
 }
 //now let's define the interfaces for the user and product
-interface User {
+interface Users {
   username: string;
 }
 interface Product {
   title: string;
 }
 //let's see how we can use the fetch() function along with these interfaces
-let result = fetch<User>("url"); //supply the appropriate type to the function
+let result = fetch<Users>("url"); //supply the appropriate type to the function
 result.data?.username; //intellisense is available
 
 //Generic Constraints
@@ -117,7 +117,7 @@ class SearchableStore<T extends { name: string }> extends Store<T> {
 //fix the generic type parameter
 class ProductStore extends Store<ProDuct> {
   filterByCategory(category: string): Product[] {
-    category
+    category;
     return [];
   }
 }
@@ -153,7 +153,7 @@ type ReadOnlyProDuct = {
 };
 //if we need another type of readonly property
 type ReadOnly<T> = {
-  readonly [Property in keyof T]?: T[Property]; //you can add ? to make them optional in one go 
+  readonly [Property in keyof T]?: T[Property]; //you can add ? to make them optional in one go
 };
 
-//you can get more details googling TS utility types on typescriptlang.org 
+//you can get more details googling TS utility types on typescriptlang.org

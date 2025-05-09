@@ -98,4 +98,38 @@ class Person2 {
 }
 
 let person2 = new Person2("Mbah", "Ejike");
-console.log(person2.fullName)
+console.log(person2.fullName);
+
+//Property decorators
+//let's define a decorator for enhancing a property
+//we use a paramaterized decorator
+function MinLength(length: number) {
+  return (target: any, propertyName: string) => {
+    let value: string;
+
+    const descriptor: PropertyDescriptor = {
+      get() {
+        return value;
+      },
+      set(newValue) {
+        if (newValue.length < length)
+          throw new Error(
+            `${propertyName} should be at lease ${length} characters long`
+          );
+        value = newValue;
+      },
+    };
+
+    Object.defineProperty(target, propertyName, descriptor);
+  };
+}
+class UseR {
+  @MinLength(4)
+  password: string;
+  constructor(password: string) {
+    this.password = password;
+  }
+}
+
+let user1 = new UseR("1234");
+console.log(user1.password);

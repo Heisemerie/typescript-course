@@ -23,14 +23,21 @@ function Component1(options) {
         constructor.prototype.insertInDOM = () => console.log("Inserting the component in the DOM");
     };
 }
-class ProfileComponent1 {
-}
+let ProfileComponent1 = class ProfileComponent1 {
+};
+ProfileComponent1 = __decorate([
+    Component1({ selector: "#my-profile" })
+], ProfileComponent1);
 function Pipe(constructor) {
     console.log("Pipe decorator called");
     constructor.prototype.pipe = true;
 }
-class ProfileComponent2 {
-}
+let ProfileComponent2 = class ProfileComponent2 {
+};
+ProfileComponent2 = __decorate([
+    Component,
+    Pipe
+], ProfileComponent2);
 function Log(target, methodName, descriptor) {
     const original = descriptor.value;
     descriptor.value = function (...args) {
@@ -70,4 +77,30 @@ __decorate([
 ], Person2.prototype, "fullName", null);
 let person2 = new Person2("Mbah", "Ejike");
 console.log(person2.fullName);
+function MinLength(length) {
+    return (target, propertyName) => {
+        let value;
+        const descriptor = {
+            get() {
+                return value;
+            },
+            set(newValue) {
+                if (newValue.length < length)
+                    throw new Error(`${propertyName} should be at lease ${length} characters long`);
+                value = newValue;
+            },
+        };
+        Object.defineProperty(target, propertyName, descriptor);
+    };
+}
+class UseR {
+    constructor(password) {
+        this.password = password;
+    }
+}
+__decorate([
+    MinLength(4)
+], UseR.prototype, "password", void 0);
+let user1 = new UseR("123");
+console.log(user1.password);
 //# sourceMappingURL=index.js.map
