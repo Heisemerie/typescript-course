@@ -32,3 +32,7 @@ let stores = new Stores();
 //sometimes we need quite a few objects from a module
 import * as Shapes from './shapes' //use an asterisk to import everything at once
 Shapes.Squares
+
+//Re-exporting
+//with re-exporting we can have a single module combine the export of different modules
+import {Toyota, Volvo} from './cars'
