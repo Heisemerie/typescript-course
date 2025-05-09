@@ -14,3 +14,9 @@ import { Circles as Circle } from "./shapes"; //while importing we can optionall
 
 let circle = new Circle(1);
 console.log(circle.radius);
+
+//Module formats
+//In the old days JS didn't have a module format
+//Starting with ES2015 modules have become natively supported in JS
+//let's explore other module formats for familiarity (they are not used anymore)
+//we modify the compiler option in the tsconfig modules section
