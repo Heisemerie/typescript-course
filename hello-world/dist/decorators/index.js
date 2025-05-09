@@ -23,19 +23,30 @@ function Component1(options) {
         constructor.prototype.insertInDOM = () => console.log("Inserting the component in the DOM");
     };
 }
-let ProfileComponent1 = class ProfileComponent1 {
-};
-ProfileComponent1 = __decorate([
-    Component1({ selector: "#my-profile" })
-], ProfileComponent1);
+class ProfileComponent1 {
+}
 function Pipe(constructor) {
     console.log("Pipe decorator called");
     constructor.prototype.pipe = true;
 }
-let ProfileComponent2 = class ProfileComponent2 {
-};
-ProfileComponent2 = __decorate([
-    Component,
-    Pipe
-], ProfileComponent2);
+class ProfileComponent2 {
+}
+function Log(target, methodName, descriptor) {
+    const original = descriptor.value;
+    descriptor.value = function (message) {
+        console.log("Before");
+        original.call(this, message);
+        console.log("After");
+    };
+}
+class Person1 {
+    say(message) {
+        console.log(`Person says ${message}`);
+    }
+}
+__decorate([
+    Log
+], Person1.prototype, "say", null);
+let person = new Person1();
+person.say("hello");
 //# sourceMappingURL=index.js.map

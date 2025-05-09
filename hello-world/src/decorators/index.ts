@@ -40,7 +40,7 @@ function Component1(options: ComponentOptions) {
   };
 }
 
-@Component1({ selector: "#my-profile" })
+// @Component1({ selector: "#my-profile" })
 class ProfileComponent1 {}
 
 //Decorator composition
@@ -50,9 +50,29 @@ function Pipe(constructor: Function) {
   constructor.prototype.pipe = true;
 }
 
-@Component
-@Pipe
+// @Component
+// @Pipe
 class ProfileComponent2 {}
 //the 'Pipe' decorator runs before the 'Component' decorator.
 //the idea comes from math where in the expression f(g(x)), g(x) runs before f(x)
 
+//Method Decorators
+//let's see how we can enhance our methods using decorators
+//here instead of the constructor, we pass three different parameters used below
+function Log(target: any, methodName: string, descriptor: PropertyDescriptor) {
+  //the decriptor has a special property called 'value' that refers to the method
+  const original = descriptor.value as Function; //save the original method and use type assertion for intellisense
+  descriptor.value = function (...args: any) {
+    console.log("Before");
+    original.call(this, ...args);
+    console.log("After");
+  }; //when redefining classes, always use a function expression and not arrow functions
+}
+class Person1 {
+  @Log
+  say(message: string) {
+    console.log(`Person says ${message}`);
+  }
+}
+let person = new Person1();
+person.say("hello");
