@@ -133,3 +133,23 @@ class UseR {
 
 let user1 = new UseR("1234");
 console.log(user1.password);
+
+//Parameter Decorators
+//the last decorator type is the parameter decorator
+//it is not often used
+//but if you're designing a framework for other people to use then you might want to know how it works
+type WatchedParameter = {
+  methodName: string;
+  parameterIndex: number;
+};
+const watchedParameters: WatchedParameter[] = [];
+function Watch(target: any, methodName: string, parameterIndex: number) {
+  watchedParameters .push({
+    methodName,
+    parameterIndex,
+  });
+}
+class Vehicle {
+  move(@Watch speed: number) {}
+}
+console.log(watchedParameters)
