@@ -33,9 +33,9 @@ class ProfileComponent2 {
 }
 function Log(target, methodName, descriptor) {
     const original = descriptor.value;
-    descriptor.value = function (message) {
+    descriptor.value = function (...args) {
         console.log("Before");
-        original.call(this, message);
+        original.call(this, ...args);
         console.log("After");
     };
 }
@@ -49,4 +49,25 @@ __decorate([
 ], Person1.prototype, "say", null);
 let person = new Person1();
 person.say("hello");
+function Capitalize(target, methodName, descriptor) {
+    const original = descriptor.get;
+    descriptor.get = function () {
+        const result = original === null || original === void 0 ? void 0 : original.call(this);
+        return typeof result === "string" ? result.toUpperCase() : result;
+    };
+}
+class Person2 {
+    constructor(firstName, lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+    get fullName() {
+        return `${this.firstName} ${this.lastName}`;
+    }
+}
+__decorate([
+    Capitalize
+], Person2.prototype, "fullName", null);
+let person2 = new Person2("Mbah", "Ejike");
+console.log(person2.fullName);
 //# sourceMappingURL=index.js.map

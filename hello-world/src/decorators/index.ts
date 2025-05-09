@@ -20,7 +20,6 @@ function Component(constructor: Function) {
   constructor.prototype.insertInDOM = () =>
     console.log("Inserting the component in the DOM");
 }
-
 @Component
 class ProfileComponent {}
 
@@ -39,8 +38,7 @@ function Component1(options: ComponentOptions) {
       console.log("Inserting the component in the DOM");
   };
 }
-
-// @Component1({ selector: "#my-profile" })
+@Component1({ selector: "#my-profile" })
 class ProfileComponent1 {}
 
 //Decorator composition
@@ -49,9 +47,8 @@ function Pipe(constructor: Function) {
   console.log("Pipe decorator called");
   constructor.prototype.pipe = true;
 }
-
-// @Component
-// @Pipe
+@Component
+@Pipe
 class ProfileComponent2 {}
 //the 'Pipe' decorator runs before the 'Component' decorator.
 //the idea comes from math where in the expression f(g(x)), g(x) runs before f(x)
@@ -76,3 +73,29 @@ class Person1 {
 }
 let person = new Person1();
 person.say("hello");
+
+//Accessor decorators
+//let's see how we can enhance our accessors (getters & setters) using decorators
+//accessors are methods under the hood and therefore their decorators take the same parameters
+function Capitalize(
+  target: any,
+  methodName: string,
+  descriptor: PropertyDescriptor
+) {
+  const original = descriptor.get;
+  descriptor.get = function () {
+    const result = original?.call(this);
+    return typeof result === "string" ? result.toUpperCase() : result;
+  };
+}
+class Person2 {
+  constructor(public firstName: string, public lastName: string) {}
+
+  @Capitalize
+  get fullName() {
+    return `${this.firstName} ${this.lastName}`;
+  }
+}
+
+let person2 = new Person2("Mbah", "Ejike");
+console.log(person2.fullName)
