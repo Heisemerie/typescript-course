@@ -27,3 +27,8 @@ console.log(circle.radius);
 import Stores, { Format } from "./storage";
 let stores = new Stores();
 //default exxports can exist with named exports
+
+//Wildcard Imports
+//sometimes we need quite a few objects from a module
+import * as Shapes from './shapes' //use an asterisk to import everything at once
+Shapes.Squares
