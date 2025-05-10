@@ -23,3 +23,14 @@ console.log(tax);
 import { calculateTax2 } from "./tax2";
 const tax2 = calculateTax2(1000); //we get TS compilation errors
 console.log(tax2);
+
+//Creating Declaration files
+//we have another way of providing type information and that's using a declaration or type definition file
+//it is used if you don't want to modify your JS code and add JSDoc comments
+//first we create a file 'tax3.d.ts', the name of the file should be the same as the corresponding JS file, 'd' is short for declaration
+//in the declaration file we declare all the features of the target module 'tax3.js'
+import { calculateTax3 } from "./tax3";
+let tax3 = calculateTax3(1500); //we get TS compilation errors
+console.log(tax3);
+//when using this approach you should describe all the features in the target module. 
+//Anything you don't describe would be invisible to the compiler (eg exports)
