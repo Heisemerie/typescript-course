@@ -17,3 +17,9 @@ console.log(tax);
 //when using JS code we don't get type checking and we don't see errors until runtime
 //turn on "checkJS" to get some basic type checking
 //the type of 'income' in calculateTax is 'any' therefore TSC won't throw errors for the wrong input type
+
+//Describing Types using JSDoc
+//one way to describe types to TSC is using JSDoc which is a special type of comment we can add to JS code (in tax.js)
+import { calculateTax2 } from "./tax2";
+const tax2 = calculateTax2(1000); //we get TS compilation errors
+console.log(tax2);
