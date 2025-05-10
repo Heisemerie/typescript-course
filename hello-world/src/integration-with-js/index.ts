@@ -32,5 +32,17 @@ console.log(tax2);
 import { calculateTax3 } from "./tax3";
 let tax3 = calculateTax3(1500); //we get TS compilation errors
 console.log(tax3);
-//when using this approach you should describe all the features in the target module. 
+//when using this approach you should describe all the features in the target module.
 //Anything you don't describe would be invisible to the compiler (eg exports)
+
+//Using Definitely Typed Declaration files
+//let's talk about using thrid party JS libraries in our TS project
+//we install 'Lodash' (utility library)
+import * as _ from "lodash"; //we get an initial error because lodash is a pure JS library (it does't have JSDocs comments or declaration files)
+//in this case we use a very popular GitHub repository called DefinitelyTyped
+// in this repo we can find the declaration files for all the popular JS libraries
+//we install using 'npm i -D @types/lodash'
+_.clone([1, 2, 3]); //her we have type annotation
+//most libraries come with declaration files, so we don't need to install them seperately from the Definitely Typed library
+//for example let's install 'chalk' library
+//in 'src/node_modules/chalk/source' there's an index.d.ts declaration file 
