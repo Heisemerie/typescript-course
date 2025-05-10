@@ -12,3 +12,8 @@ import { calculateTax } from "./tax"; //the TSC cannot see our tax.js module. Tu
 //change the module option in tsconfig to "CommonJS" for imports to work
 const tax = calculateTax(5000);
 console.log(tax);
+
+//Type-checking JS code
+//when using JS code we don't get type checking and we don't see errors until runtime
+//turn on "checkJS" to get some basic type checking
+//the type of 'income' in calculateTax is 'any' therefore TSC won't throw errors for the wrong input type
