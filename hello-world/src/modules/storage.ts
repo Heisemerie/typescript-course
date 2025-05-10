@@ -6,5 +6,7 @@ export enum Format {
 }
 
 class Compressor {} //for compressing object before storing
+Compressor;
 class Encryptor {} //for encrpting objects before storage
+Encryptor;
 //other modules should not know of these objects

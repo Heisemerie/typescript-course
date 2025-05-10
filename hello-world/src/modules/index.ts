@@ -25,7 +25,9 @@ console.log(circle.radius);
 //sometimes we just want to export a single thing from a module
 //in that case it is better to use a default export
 import Stores, { Format } from "./storage";
+Format
 let stores = new Stores();
+stores
 //default exxports can exist with named exports
 
 //Wildcard Imports
@@ -36,3 +38,5 @@ Shapes.Squares
 //Re-exporting
 //with re-exporting we can have a single module combine the export of different modules
 import {Toyota, Volvo} from './cars'
+Toyota
+Volvo
